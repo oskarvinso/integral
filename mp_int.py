@@ -3,26 +3,26 @@ import numpy as np #hay que intalar esta libreria para la parte matematica asi p
 import multiprocessing as mpi # se importa la libreria del multiproceso
 areas = []
 sumatoria = 0
-def integrar(limi, limf):
+def integrar(limi, limf, node):
 	#declaro variables, dos listas para graficar los valores de X & Y, y la variable integral donde se depositara el resultado final
 	gx = []
 	gy = []
 	integral = 0
 	base = 0.1 # aqui se define la base de cada rectangulo, entre mas pequeña la base mayor resolucion de la integral
 	for x in np.arange(limi, limf, base): # Limi y limf es el semgmento de la curva, la base del eje x para cada rectangulo
-		y = (np.exp(np.sin(x)))/np.exp(x)	# la ecuacion que se esta graficando es (seno(x))^2
+		y = (np.exp(np.sin(x)/(np.exp(x)/x)*x))	# la ecuacion que se esta graficando es (seno(x))^2/((x)^2/x)(x)
 		gx.append (x)
 		gy.append (y)
 		area = (base * y)	# calcula area base por altura
 		integral = area + integral  # hace la sumatoria
-		#print(integral)  # devuelve el resultado de la integral hasta el momento
+		print("segmento procesado por el nodo ", node "resultado hasta ahora ", integral)  # devuelve el resultado de la integral hasta el momento
 		graf.stem(gx, gy) # Grafica
 		graf.pause(0.0005) # pausa la grafica en 0.05 para ver el proceso
 	return(integral)
 
 # aqui se define que segmento de la integral va a procesar cada nodo definiendo el limite de inicio y de final
-nodo1 = mpi.Process(target = areas.append(integrar(0,4)))
-nodo2 = mpi.Process(target = areas.append(integrar(4,8)))
+nodo1 = mpi.Process(target = areas.append(integrar(0,4,1)))
+nodo2 = mpi.Process(target = areas.append(integrar(4,8,2)))
 #nodo3 = mpi.Process(target=integrar)
 #nodo4 = mpi.Process(target=integrar)
 
