@@ -10,7 +10,7 @@ def integrar(limi, limf, node):
 	integral = 0
 	base = 0.1 # aqui se define la base de cada rectangulo, entre mas pequeña la base mayor resolucion de la integral
 	for x in np.arange(limi, limf, base): # Limi y limf es el semgmento de la curva, la base del eje x para cada rectangulo
-		y = (np.exp(np.sin(x)))/np.exp(x)	# la ecuacion que se esta graficando es (seno(x))^2
+		y = (np.exp(np.sin(x)/(np.exp(x)/x)*x))	# la ecuacion que se esta graficando es (seno(x))^2
 		gx.append (x)
 		gy.append (y)
 		area = (base * y)	# calcula area base por altura
