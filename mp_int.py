@@ -20,12 +20,13 @@ def integrar(limi, limf, node):
 	return(integral)
 
 # aqui se define que segmento de la integral va a procesar cada nodo definiendo el limite de inicio y de final
-
-nodo1 = mpi.Process(target = areas.append(integrar(0.01,4,1)))
-nodo1.start()
-nodo2 = mpi.Process(target = areas.append(integrar(4.01,8,2)))
-nodo2.start()
-
-#Finalmente hacemos la sumatoria total de las areas calculadas por cada nodo
-print ("El total del area bajo la curva es de ", sum(areas))
-graf.show()
+if __name__ == '__main__':
+	nodo1 = mpi.Process(target = areas.append(integrar(0.01,4,1)))
+	nodo1.start()
+	nodo2 = mpi.Process(target = areas.append(integrar(4.01,8,2)))
+	nodo2.start()
+	nodo1.join()
+	nodo2.join()
+	#Finalmente hacemos la sumatoria total de las areas calculadas por cada nodo
+	print ("El total del area bajo la curva es de ", sum(areas))
+	graf.show()
