@@ -15,7 +15,7 @@ def integrar(limi, limf, node):
 		gy.append (y)
 		area = (base * y)	# calcula area base por altura
 		integral = area + integral  # hace la sumatoria
-		print("segmento procesado por el nodo ", node "resultado hasta ahora ", integral)  # devuelve el resultado de la integral hasta el momento
+		print("segmento procesado por el nodo {} resultado hasta ahora {} ").format(node, integral)  # devuelve el resultado de la integral hasta el momento
 		graf.stem(gx, gy) # Grafica
 		graf.pause(0.0005) # pausa la grafica en 0.05 para ver el proceso
 	return(integral)
